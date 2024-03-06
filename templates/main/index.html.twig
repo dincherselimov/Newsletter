@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .form-container { margin-top: 50px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+
+    <div class="form-container">
+        <h2>Get Started</h2>
+        {% if app.user %}
+            <p>You are logged in as: {{ app.user.username }}</p>
+            {# <a href="{{ path('app_logout') }}">Logout</a> #}
+              <form action="{{ path('app_logout') }}" method="get">
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <form action="{{ path('app_login') }}" method="get">
+                <button type="submit">Login</button>
+            </form>
+            <form action="{{ path('app_register') }}" method="get">
+                <button type="submit">Register</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -3,3 +3,34 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+app_login:
+    path: /login
+    controller: App\Controller\UserController::login
+
+app_register:
+    path: /register
+    controller: App\Controller\UserController::register
+
+app_home:
+    path: /
+    controller: App\Controller\MainController::index
+
+app_registration:
+    path: /registration
+    controller: App\Controller\UserController::register
+
+app_logout:
+    path: /logout
+    controller: App\Controller\UserController::logout
+
+app_news:
+    path: /publish-news
+    controller: App\Controller\NewsController::publishNews
+    
+app_news_add:
+    path: /news/add
+    controller: App\Controller\NewsController::addNews
+    methods: [GET, POST]
+
+
