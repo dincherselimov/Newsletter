@@ -9,16 +9,35 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Email;;
 
-class RegistrationFormType extends AbstractType
-{
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+
+class RegistrationFormType extends AbstractType {
+
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     * @return void
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('username')
-            ->add('email')
+            ->add('username', null, [
+                'constraints' => [
+                    new NotBlank(),
+                ],
+            ])
+            ->add('email', null, [
+                'constraints' => [
+                    new NotBlank(),
+                    new Email(),
+                ],
+            ])
             ->add('password', PasswordType::class, [
-                'label' => 'Password'
+                'label' => 'Password',
+                'constraints' => [
+                    new NotBlank(),
+                ],
             ])
             ->addEventListener(FormEvents::PRE_SUBMIT, function (FormEvent $event) {
                 $user = $event->getData();
@@ -33,8 +52,7 @@ class RegistrationFormType extends AbstractType
             });
     }
 
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);

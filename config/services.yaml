@@ -17,8 +17,11 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
             - '../src/Kernel.php'
+
+    # Remove the exclusion for App\Entity\News
+    # This allows autowiring of the News entity
+    App\Entity\News: 
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
