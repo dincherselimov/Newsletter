@@ -15,13 +15,15 @@ class NewsFormType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('description', TextareaType::class)           
+            ->add('description', TextareaType::class)
             ->add('category', ChoiceType::class, [
                 'choices' => [
                     'Technologies' => 'Technologies',
                     'Politics' => 'Politics',
                     'Interesting' => 'Interesting',
                 ],
+                'multiple' => true,
+                'expanded' => true,
             ]);
     }
 

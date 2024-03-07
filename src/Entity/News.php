@@ -23,8 +23,8 @@ class News
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $published_at = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $category = null;
+    #[ORM\Column(type: 'json', nullable: true)]
+    private ?array $category = [];
 
     public function getId(): ?int
     {
@@ -74,12 +74,12 @@ class News
         return $this;
     }
 
-    public function getCategory(): ?string
+    public function getCategory(): ?array
     {
         return $this->category;
     }
 
-    public function setCategory(string $category): static
+    public function setCategory(array $category): static
     {
         $this->category = $category;
 
